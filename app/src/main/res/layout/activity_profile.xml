@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LIBRIS"
+            android:text="UniLibrary"
             android:textColor="@color/primary_red"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -71,7 +71,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Mariana Silva"
+                        android:text="Marina Silva"
                         android:textColor="@color/background_dark"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -79,7 +79,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Estudante de Arquitetura"
+                        android:text="Estudante de Meio Ambiente"
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -170,9 +170,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/background_light_grey"
                     android:padding="8dp"
-                    android:gravity="center_vertical"
-                    android:background="@color/white">
+                    android:gravity="center_vertical">
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="40dp"
                         android:layout_height="60dp"
@@ -180,8 +180,7 @@
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="centerCrop"
-                            android:background="@color/background_light_grey" />
+                            android:scaleType="centerCrop" />
                     </com.google.android.material.card.MaterialCardView>
                     <LinearLayout
                         android:layout_width="0dp"
