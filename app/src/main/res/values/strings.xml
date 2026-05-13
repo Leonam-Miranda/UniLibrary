@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniLibrary</string>
+    <string name="app_logo_text">LIBRIS</string>
+
+    <!-- Login -->
+    <string name="login_subtitle">Sua biblioteca universitária digital</string>
+    <string name="label_email">E-mail Institucional</string>
+    <string name="label_password">Senha</string>
+    <string name="forgot_password">Esqueci minha senha</string>
+    <string name="btn_login">Entrar</string>
+    <string name="no_account">Ainda não tem uma conta? <b>Cadastre-se</b></string>
+
+    <!-- Cadastro -->
+    <string name="register_title">Criar Conta</string>
+    <string name="register_subtitle">Preencha os dados abaixo para acessar a biblioteca.</string>
+    <string name="label_photo">Foto de perfil (opcional)</string>
+    <string name="label_name">Nome Completo</string>
+    <string name="label_course">Selecione seu curso</string>
+    <string name="btn_register">Cadastrar</string>
+    <string name="hint_password_min">Mínimo de 8 caracteres</string>
+
+    <!-- Dashboard -->
+    <string name="section_suggested">Livros sugeridos para você</string>
+    <string name="section_loans">Meus Empréstimos Atuais</string>
+    <string name="btn_renew">Renovar</string>
+
+    <!-- Search -->
+    <string name="hint_search">Search books, authors, or ISBN…</string>
+    <string name="filter_all">All Categories</string>
+    <string name="section_recent_arrivals">Recent Arrivals</string>
+    <string name="status_available_tag">Disponível</string>
+    <string name="status_unavailable_tag">Indisponível</string>
+
+    <!-- Detail -->
+    <string name="book_title_detail">O Silêncio das Estrelas</string>
+    <string name="book_author_detail">por Marina Solano</string>
+    <string name="label_status">STATUS</string>
+    <string name="label_location">LOCALIZAÇÃO</string>
+    <string name="status_available">Disponível</string>
+    <string name="location_detail">Corredor 4, Estante B</string>
+    <string name="section_synopsis">Sinopse</string>
+    <string name="synopsis_content">Com uma escrita envolvente, Marina Solano nos leva a uma viagem pelo espaço e pelo tempo, explorando os mistérios do universo e da alma humana.</string>
+    <string name="btn_reserve">Reservar Empréstimo</string>
+
+    <!-- Loans -->
+    <string name="loans_title">My Loans</string>
+    <string name="loans_subtitle">Manage your currently borrowed literature.</string>
+    <string name="due_in_days">Due in %1$d days</string>
+    <string name="read_progress">%1$d%% Read</string>
+
+    <!-- Profile -->
+    <string name="profile_name">Mariana Silva</string>
+    <string name="profile_course">Estudante de Arquitetura</string>
+    <string name="stat_books">LIVROS</string>
+    <string name="stat_borrowed">EMPRÉSTIMOS</string>
+    <string name="stat_saved">SALVOS</string>
+    <string name="section_activity">Atividade Recente</string>
+    <string name="view_all">Ver Tudo</string>
+    <string name="section_settings">Configurações</string>
+    <string name="setting_notifications">Notificações</string>
+    <string name="setting_language">Idioma</string>
+    <string name="current_language">Português (BR)</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_loans">My Loans</string>
+    <string name="nav_profile">Profile</string>
+</resources>
