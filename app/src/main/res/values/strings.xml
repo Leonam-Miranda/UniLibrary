@@ -49,6 +49,18 @@
     <string name="due_in_days">Due in %1$d days</string>
     <string name="read_progress">%1$d%% Read</string>
 
+    <!-- Renew Loan -->
+    <string name="renew_loan_title">Renovação de Empréstimo</string>
+    <string name="status_open">EM ABERTO</string>
+    <string name="current_due_date">DEVOLUÇÃO ATUAL</string>
+    <string name="new_due_date">NOVA DEVOLUÇÃO</string>
+    <string name="renewal_info_message">Você pode renovar este livro por mais 14 dias, desde que não haja reservas pendentes por outros usuários.</string>
+    <string name="btn_confirm_renewal">Confirmar Renovação</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="date_15_october">15 de Outubro</string>
+    <string name="date_29_october">29 de Outubro</string>
+    <string name="plus_14_days">+14 dias</string>
+
     <!-- Profile -->
     <string name="profile_name">Mariana Silva</string>
     <string name="profile_course">Estudante de Arquitetura</string>
