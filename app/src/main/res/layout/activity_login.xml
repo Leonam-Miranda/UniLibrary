@@ -121,6 +121,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvForgotPassword" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGoToRegister"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/btn_go_to_register"
+        android:textAllCaps="false"
+        android:textColor="@color/primary_red"
+        app:strokeColor="@color/primary_red"
+        app:cornerRadius="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
