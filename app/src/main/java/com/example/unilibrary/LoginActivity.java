@@ -12,13 +12,18 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         MaterialButton btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(v -> {
-            startActivity(new Intent(this, DashboardActivity.class));
-            finish();
-        });
+        if (btnLogin != null) {
+            btnLogin.setOnClickListener(v -> {
+                startActivity(new Intent(this, DashboardActivity.class));
+                finish();
+            });
+        }
 
-        findViewById(R.id.registerPrompt).setOnClickListener(v -> {
-            startActivity(new Intent(this, RegisterActivity.class));
-        });
+        MaterialButton btnGoToRegister = findViewById(R.id.btnGoToRegister);
+        if (btnGoToRegister != null) {
+            btnGoToRegister.setOnClickListener(v -> {
+                startActivity(new Intent(this, RegisterActivity.class));
+            });
+        }
     }
 }

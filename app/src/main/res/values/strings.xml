@@ -9,6 +9,7 @@
     <string name="label_password">Senha</string>
     <string name="forgot_password">Esqueci minha senha</string>
     <string name="btn_login">Entrar</string>
+    <string name="btn_go_to_register">Cadastre-se</string>
     <string name="no_account">Ainda não tem uma conta? <b>Cadastre-se</b></string>
 
     <!-- Cadastro -->
@@ -26,9 +27,11 @@
     <string name="btn_renew">Renovar</string>
 
     <!-- Search -->
-    <string name="hint_search">Search books, authors, or ISBN…</string>
-    <string name="filter_all">All Categories</string>
-    <string name="section_recent_arrivals">Recent Arrivals</string>
+    <string name="hint_search">Pesquisar livros, autores ou ISBN…</string>
+    <string name="filter_all">Todas as Categorias</string>
+    <string name="filter_fiction">Ficção</string>
+    <string name="filter_romance">Romance</string>
+    <string name="section_recent_arrivals">Chegadas Recentes</string>
     <string name="status_available_tag">Disponível</string>
     <string name="status_unavailable_tag">Indisponível</string>
 
@@ -44,10 +47,10 @@
     <string name="btn_reserve">Reservar Empréstimo</string>
 
     <!-- Loans -->
-    <string name="loans_title">My Loans</string>
-    <string name="loans_subtitle">Manage your currently borrowed literature.</string>
-    <string name="due_in_days">Due in %1$d days</string>
-    <string name="read_progress">%1$d%% Read</string>
+    <string name="loans_title">Meus Empréstimos</string>
+    <string name="loans_subtitle">Gerencie suas obras literárias emprestadas.</string>
+    <string name="due_in_days">Vence em %1$d dias</string>
+    <string name="read_progress">%1$d%% Lido</string>
 
     <!-- Renew Loan -->
     <string name="renew_loan_title">Renovação de Empréstimo</string>
@@ -75,8 +78,8 @@
     <string name="current_language">Português (BR)</string>
 
     <!-- Navigation -->
-    <string name="nav_home">Home</string>
-    <string name="nav_search">Search</string>
-    <string name="nav_loans">My Loans</string>
-    <string name="nav_profile">Profile</string>
+    <string name="nav_home">Início</string>
+    <string name="nav_search">Pesquisar</string>
+    <string name="nav_loans">Empréstimos</string>
+    <string name="nav_profile">Perfil</string>
 </resources>
