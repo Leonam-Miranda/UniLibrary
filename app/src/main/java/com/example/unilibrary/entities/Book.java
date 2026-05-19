@@ -1,6 +1,6 @@
-package entities;
+package com.example.unilibrary.entities;
 
-import enums.BookStatus;
+import com.example.unilibrary.enums.BookStatus;
 
 public class Book {
     private Integer id;
