@@ -1,4 +1,4 @@
-package entities;
+package com.example.unilibrary.entities;
 
 import java.util.Date;
 

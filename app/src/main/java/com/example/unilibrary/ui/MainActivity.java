@@ -1,4 +1,4 @@
-package com.example.unilibrary;
+package com.example.unilibrary.ui;
 
 import android.content.Intent;
 import android.os.Bundle;

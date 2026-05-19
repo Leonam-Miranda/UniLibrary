@@ -1,10 +1,12 @@
-package com.example.unilibrary;
+package com.example.unilibrary.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.unilibrary.R;
 import com.google.android.material.button.MaterialButton;
 
 public class RegisterActivity extends AppCompatActivity {

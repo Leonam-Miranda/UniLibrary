@@ -13,7 +13,7 @@
         android:theme="@style/Theme.UniLibrary">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity" android:exported="false" />
-        <activity android:name=".RegisterActivity" android:exported="false" />
-        <activity android:name=".DashboardActivity" android:exported="false" />
-        <activity android:name=".SearchActivity" android:exported="false" />
-        <activity android:name=".LoansActivity" android:exported="false" />
-        <activity android:name=".ProfileActivity" android:exported="false" />
-        <activity android:name=".DetailActivity" android:exported="false" />
+        <activity android:name=".ui.LoginActivity" android:exported="false" />
+        <activity android:name=".ui.RegisterActivity" android:exported="false" />
+        <activity android:name=".ui.DashboardActivity" android:exported="false" />
+        <activity android:name=".ui.SearchActivity" android:exported="false" />
+        <activity android:name=".ui.LoansActivity" android:exported="false" />
+        <activity android:name=".ui.ProfileActivity" android:exported="false" />
+        <activity android:name=".ui.DetailActivity" android:exported="false" />
 
     </application>
 
