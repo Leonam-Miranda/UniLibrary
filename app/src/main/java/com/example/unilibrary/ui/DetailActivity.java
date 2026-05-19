@@ -1,7 +1,9 @@
-package com.example.unilibrary;
+package com.example.unilibrary.ui;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.unilibrary.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class DetailActivity extends AppCompatActivity {

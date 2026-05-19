@@ -1,6 +1,6 @@
-package entities;
+package com.example.unilibrary.entities;
 
-import enums.Language;
+import com.example.unilibrary.enums.Language;
 
 public class User {
     private Integer id;
