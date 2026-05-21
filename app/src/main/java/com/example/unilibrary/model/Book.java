@@ -1,8 +1,16 @@
 package com.example.unilibrary.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+import com.example.unilibrary.db.Converters;
+
 import com.example.unilibrary.enums.BookStatus;
 
+@Entity(tableName = "book")
+@TypeConverters(Converters.class)
 public class Book {
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
     private String title;
     private String author;
