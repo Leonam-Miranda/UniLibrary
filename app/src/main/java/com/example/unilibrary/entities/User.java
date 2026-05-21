@@ -1,24 +1,34 @@
 package com.example.unilibrary.entities;
 
-import com.example.unilibrary.enums.Language;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+import com.example.unilibrary.enums.Language;
+@Entity(tableName = "usuario")
 public class User {
+    @PrimaryKey(autoGenerate = true)
     private Integer id;
+    @NonNull
     private String name;
     private byte[] ProfilePic;
+    @NonNull
+    @ColumnInfo(index = true)
     private String email;
+    @NonNull
     private String password;
-    private Language language;
+    
+    public int readBooks = 0;
 
     public User(){}
 
-    public User (Integer id, String name, String email, String password, Language language){
-        this.id = id;
+    public User (String name,
+                 String email,
+                 String password){
         this.name = name;
         this.email = email;
-        this.password = password;
-        this.language = language;
-    }
+        this.password = password;}
 
     public Integer getId(){
         return id;
@@ -34,11 +44,5 @@ public class User {
     }
     public String getPassword(){
         return password;
-    }
-    public Language getLanguage(){
-        return language;
-    }
-    public void setLanguage(Language language){
-        this.language = language;
     }
 }
