@@ -1,12 +1,11 @@
-package com.example.unilibrary.entities;
+package com.example.unilibrary.model;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.example.unilibrary.enums.Language;
-@Entity(tableName = "usuario")
+@Entity(tableName = "user")
 public class User {
     @PrimaryKey(autoGenerate = true)
     private Integer id;
@@ -18,7 +17,7 @@ public class User {
     private String email;
     @NonNull
     private String password;
-    
+
     public int readBooks = 0;
 
     public User(){}
