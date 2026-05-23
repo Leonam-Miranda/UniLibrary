@@ -4,9 +4,10 @@ import android.content.Context;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.Database;
-import androidx.room.TypeConverters;
 
 
+import com.example.unilibrary.db.dao.BookDao;
+import com.example.unilibrary.db.dao.UserDao;
 import com.example.unilibrary.model.Book;
 import com.example.unilibrary.model.Loan;
 import com.example.unilibrary.model.User;

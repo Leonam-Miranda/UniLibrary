@@ -7,7 +7,7 @@ import android.os.Looper;
 import androidx.core.util.Consumer;
 
 import com.example.unilibrary.db.AppDatabase;
-import com.example.unilibrary.db.UserDao;
+import com.example.unilibrary.db.dao.UserDao;
 import com.example.unilibrary.model.User;
 
 import org.mindrot.jbcrypt.BCrypt;

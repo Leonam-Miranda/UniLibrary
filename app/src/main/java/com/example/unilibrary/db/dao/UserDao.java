@@ -1,4 +1,4 @@
-package com.example.unilibrary.db;
+package com.example.unilibrary.db.dao;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
