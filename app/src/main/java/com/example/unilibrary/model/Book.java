@@ -2,53 +2,18 @@ package com.example.unilibrary.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-import androidx.room.TypeConverters;
-import com.example.unilibrary.db.Converters;
 
 import com.example.unilibrary.enums.BookStatus;
 
+// data/model/Book.java
 @Entity(tableName = "book")
-@TypeConverters(Converters.class)
 public class Book {
     @PrimaryKey(autoGenerate = true)
-    private Integer id;
-    private String title;
-    private String author;
-    private String description;
-    private BookStatus status;
-    private String epubUrl;
-
-    public Book(){}
-    public Book(Integer id, String title, String author, String description, BookStatus status, String epubUrl) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.description = description;
-        this.status = status;
-        this.epubUrl = epubUrl;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public BookStatus getStatus() {
-        return status;
-    }
-
-    public String getEpubUrl() {
-        return epubUrl;
-    }
+    public int id;
+    public String title;
+    public String author;
+    public String genre;
+    public String pdfAssetPath;
+    public BookStatus status;
+    public boolean avaible = true;
 }
