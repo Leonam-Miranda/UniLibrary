@@ -14,7 +14,7 @@ public class Converters {
     }
 
     @TypeConverter
-    public static BookStatus toBookStatus(String value){
+    public static BookStatus toBookStatus(String value) {
         return value == null ? null : BookStatus.valueOf(value);
     }
 

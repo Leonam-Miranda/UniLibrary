@@ -24,7 +24,7 @@ public interface BookDao {
     LiveData<List<Book>> getAll();
 
     @Query("SELECT * FROM book WHERE id = :id")
-    Book findById(int id);
+    Book searchById(int id);
 
     @Query("SELECT * FROM book WHERE title LIKE '%'|| :title ||'%'")
     LiveData<List<Book>> findByTitle(String title);

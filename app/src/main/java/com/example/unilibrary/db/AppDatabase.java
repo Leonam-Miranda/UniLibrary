@@ -14,22 +14,29 @@ import com.example.unilibrary.model.Book;
 import com.example.unilibrary.model.Loan;
 import com.example.unilibrary.model.User;
 
-@Database(entities = {User.class, Book.class, Loan.class}, version = 1, exportSchema = false)
+@Database(
+        entities = {User.class, Book.class, Loan.class},
+        version = 2
+)
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
+
     private static volatile AppDatabase instance;
+
     public abstract UserDao userDao();
     public abstract BookDao bookDao();
     public abstract LoanDao loanDao();
+
     public static AppDatabase getInstance(Context ctx) {
         if (instance == null) {
             synchronized (AppDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(
-                            ctx.getApplicationContext(),
-                            AppDatabase.class,
-                            "biblioteca.db"
-                    ).build();
+                                    ctx.getApplicationContext(),
+                                    AppDatabase.class,
+                                    "biblioteca.db"
+                            ).fallbackToDestructiveMigration()
+                            .build();
                 }
             }
         }

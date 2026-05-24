@@ -63,10 +63,9 @@ public class AuthService {
                         onError.accept("Usuário não encontrado"));
                 return;
             }
-            if(!BCrypt.checkpw(senha, u.getPassword())){
+            if(!BCrypt.checkpw(senha, u.getPasswordHash())){
                 mainThread.post(() ->
                         onError.accept("Senha incorreta"));
-                return;
             }
         }).start();
     }

@@ -11,26 +11,28 @@ import com.example.unilibrary.model.Loan;
 
 import java.util.List;
 
+// db/LoanDao.java
 @Dao
 public interface LoanDao {
+
     @Insert
-    long insert(Loan loan);
+    long add(Loan loan);
+
     @Update
     void update(Loan loan);
-    @Delete
-    void delete(Loan loan);
 
-    //lista os emprestimos do user
+    @Query("SELECT * FROM loan WHERE userId = :userId AND returned = 0")
+    LiveData<List<Loan>> findAssets(int userId);
+
+    @Query("SELECT COUNT(*) FROM loan WHERE userId = :userId AND returned = 0")
+    int accountActives(int userId);   // para checar limite de 3
+
     @Query("SELECT * FROM loan WHERE userId = :userId")
-    LiveData<List<Loan>> getByUser(int userId);
-    //lista os emprestimos do livro
-    @Query("SELECT * FROM loan WHERE bookId = :bookId")
-    LiveData<List<Loan>> getByBook(int bookId);
+    LiveData<List<Loan>> history(int userId);
 
-    //emprestimos nao retornados(returnDate nula = ainda em aberto)
-    @Query("SELECT * FROM loan WHERE userId = :userId AND returnDate IS NULL")
-    LiveData<List<Loan>> getActiveLoansByUser(int userId);
-    // Busca de imprestimo por ID
     @Query("SELECT * FROM loan WHERE id = :id")
-    Loan findByIdSync(int id);
+    Loan searchById(int id);
+
+    @Query("SELECT * FROM loan WHERE bookId = :bookId AND returned = 0 LIMIT 1")
+    Loan searchByActivesBook(int bookId);
 }

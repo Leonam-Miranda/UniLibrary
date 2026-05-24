@@ -23,5 +23,5 @@ public interface UserDao {
     LiveData<User> searchForId(int id);
 
     @Query("SELECT * FROM user WHERE id = :id")
-    User findByIdSync(int id);
+    User searchById(int id);
 }

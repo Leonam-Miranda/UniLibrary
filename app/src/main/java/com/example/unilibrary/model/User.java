@@ -16,7 +16,7 @@ public class User {
     @ColumnInfo(index = true)
     private String email;
     @NonNull
-    private String password;
+    private String passwordHash;
 
     public int readBooks = 0;
 
@@ -24,10 +24,10 @@ public class User {
 
     public User (String name,
                  String email,
-                 String password){
+                 String passwordHash){
         this.name = name;
         this.email = email;
-        this.password = password;}
+        this.passwordHash = passwordHash;}
 
     public Integer getId(){
         return id;
@@ -45,7 +45,7 @@ public class User {
     public String getEmail(){
         return email;
     }
-    public String getPassword(){
-        return password;
+    public String getPasswordHash(){
+        return passwordHash;
     }
 }
