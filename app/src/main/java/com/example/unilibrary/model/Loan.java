@@ -41,9 +41,21 @@ public class Loan {
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
     public Integer getUserId() { return userId; }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
     public Integer getBookId() { return bookId; }
+    public void setBookId(Integer bookId) {
+        this.bookId = bookId;
+    }
     public long getLoanDate() { return loanDate; }
+    public void setLoanDate(long loanDate) {
+        this.loanDate = loanDate;
+    }
     public long getDueDate() { return dueDate; }
+    public void setDueDate(long dueDate) {
+        this.dueDate = dueDate;
+    }
     public Long getReturnDate() { return returnDate; }
     public void setReturnDate(Long returnDate) { this.returnDate = returnDate; }
     public double getFine() { return fine; }

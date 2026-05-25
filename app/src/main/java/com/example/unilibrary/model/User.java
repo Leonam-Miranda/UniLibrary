@@ -29,23 +29,54 @@ public class User {
         this.email = email;
         this.passwordHash = passwordHash;}
 
-    public Integer getId(){
+    public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName(){
+    @NonNull
+    public String getName() {
         return name;
     }
-    public byte[] getProfilePic(){
+
+    public void setName(@NonNull String name) {
+        this.name = name;
+    }
+
+    public byte[] getProfilePic() {
         return ProfilePic;
     }
-    public String getEmail(){
+
+    public void setProfilePic(byte[] profilePic) {
+        ProfilePic = profilePic;
+    }
+
+    @NonNull
+    public String getEmail() {
         return email;
     }
-    public String getPasswordHash(){
+
+    public void setEmail(@NonNull String email) {
+        this.email = email;
+    }
+
+    @NonNull
+    public String getPasswordHash() {
         return passwordHash;
+    }
+
+    public void setPasswordHash(@NonNull String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public int getReadBooks() {
+        return readBooks;
+    }
+
+    public void setReadBooks(int readBooks) {
+        this.readBooks = readBooks;
     }
 }
