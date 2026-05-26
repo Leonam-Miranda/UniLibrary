@@ -16,7 +16,7 @@ public class Book {
     private String author;
     private String description;
     private BookStatus status;
-    private byte[] epubFile;
+    private String epubUrl;
 
     public Book(){}
     public Book(Integer id, String title, String author, String description, BookStatus status, String epubUrl) {
@@ -25,7 +25,7 @@ public class Book {
         this.author = author;
         this.description = description;
         this.status = status;
-        this.epubFile = epubFile;
+        this.epubUrl = epubUrl;
     }
 
     public Integer getId() {
@@ -68,11 +68,11 @@ public class Book {
         this.status = status;
     }
 
-    public byte[] getEpubFile() {
-        return epubFile;
+    public String getEpubUrl() {
+        return epubUrl;
     }
 
-    public void setEpubFile(byte[] epubFile) {
-        this.epubFile = epubFile;
+    public void setEpubUrl(String epubUrl) {
+        this.epubUrl = epubUrl;
     }
 }

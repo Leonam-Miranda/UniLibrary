@@ -66,7 +66,9 @@ public class AuthService {
             if(!BCrypt.checkpw(senha, u.getPasswordHash())){
                 mainThread.post(() ->
                         onError.accept("Senha incorreta"));
+                return;
             }
+            mainThread.post(() -> onSucesso.accept(u));
         }).start();
     }
 }

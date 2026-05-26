@@ -15,6 +15,8 @@ import com.example.unilibrary.model.Book;
 import com.example.unilibrary.model.Loan;
 import com.example.unilibrary.model.User;
 
+import java.util.Date;
+
 // service/LoanService.java
 public class LoanService {
 
@@ -81,7 +83,7 @@ public class LoanService {
                 return;
             }
 
-            long agora = System.currentTimeMillis();
+            Date agora = new Date();
             loan.setReturnDate(agora);
             loan.setReturned(true);
 
@@ -105,10 +107,10 @@ public class LoanService {
     }
 
     // CALCULAR MULTA
-    public static double calcularMulta(Loan loan, long agora) {
-        if (agora <= loan.getDueDate()) return 0.0;
+    public static double calcularMulta(Loan loan, Date agora) {
+        if (agora.getTime() <= loan.getDueDate().getTime()) return 0.0;
 
-        long diff = agora - loan.getDueDate();
+        long diff = agora.getTime() - loan.getDueDate().getTime();
         long diasAtraso = diff / (24L * 60 * 60 * 1000);
         return MULTA_INICIAL + (diasAtraso * MULTA_POR_DIA);
     }
