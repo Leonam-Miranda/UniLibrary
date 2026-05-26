@@ -60,6 +60,7 @@
                 app:cardCornerRadius="12dp"
                 app:cardElevation="8dp">
                 <ImageView
+                    android:id="@+id/ivBookCover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -67,20 +68,21 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/bookTitle"
+                android:id="@+id/tvBookTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="O Silêncio das Estrelas"
+                android:text="Título do Livro"
                 android:textColor="@color/black"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center"/>
 
             <TextView
-                android:id="@+id/bookAuthor"
+                android:id="@+id/tvBookAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="por Marina Solano"
+                android:text="Autor do Livro"
                 android:textColor="@color/text_secondary"
                 android:textSize="16sp" />
 
@@ -106,6 +108,7 @@
                         android:padding="12dp"
                         android:orientation="vertical">
                         <ImageView
+                            android:id="@+id/ivStatusIcon"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:src="@android:drawable/checkbox_on_background"
@@ -119,6 +122,7 @@
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/tvBookStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Disponível"
@@ -157,6 +161,7 @@
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
+                            android:id="@+id/tvLocation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Corredor 4, Estante B"
@@ -177,10 +182,11 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/tvBookSynopsis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Com uma escrita envolvente, Marina Solano nos leva a uma viagem pelo espaço e pelo tempo..."
+                android:text="Carregando sinopse..."
                 android:textColor="@color/text_secondary"
                 android:textSize="14sp" />
 
