@@ -30,4 +30,12 @@ public class BookService {
             mainThread.post(() -> onResult.accept(book));
         }).start();
     }
+
+    public LiveData<List<Book>> searchBooks(String query, String genre) {
+        if (genre == null || genre.isEmpty() || genre.equals("Todas as Categorias")) {
+            return dao.searchAlphabetical(query);
+        } else {
+            return dao.searchByGenre(query, genre);
+        }
+    }
 }

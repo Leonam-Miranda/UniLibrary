@@ -69,6 +69,7 @@
                         app:tint="@color/text_secondary" />
 
                     <EditText
+                        android:id="@+id/etSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="12dp"
@@ -87,11 +88,14 @@
                 android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroupGenre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:singleSelection="true">
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAll"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -103,6 +107,7 @@
                         android:textColor="@color/white" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/chipFiction"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -112,6 +117,7 @@
                         app:chipStrokeWidth="0dp" />
 
                     <com.google.android.material.chip.Chip
+                        android:id="@+id/chipRomance"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -127,141 +133,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="24dp"
-                android:text="Recentes"
+                android:text="Resultados"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Grid Layout Simulation -->
-            <GridLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvSearchResults"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:columnCount="2"
-                android:rowCount="2">
-
-                <!-- Book Item 1 -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/bookCard1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="180dp">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:background="@color/background_light_grey" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:background="@color/badge_available"
-                                android:paddingHorizontal="8dp"
-                                android:paddingVertical="2dp"
-                                android:text="Disponível"
-                                android:textColor="@color/white"
-                                android:textSize="10sp" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:background="@color/background_light_grey"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="The Design of Every..."
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:textSize="12sp" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Don Norman"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Book Item 2 -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/bookCard2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:layout_margin="8dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="180dp">
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleType="centerCrop"
-                                android:background="@color/background_light_grey" />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
-                                android:background="@color/badge_unavailable"
-                                android:paddingHorizontal="8dp"
-                                android:paddingVertical="2dp"
-                                android:text="Indisponível"
-                                android:textColor="@color/white"
-                                android:textSize="10sp" />
-                        </FrameLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:background="@color/background_light_grey"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Clean Code"
-                                android:textColor="@color/black"
-                                android:textStyle="bold"
-                                android:textSize="12sp" />
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Robert C. Martin"
-                                android:textColor="@color/text_secondary"
-                                android:textSize="10sp" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </GridLayout>
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/item_book_search" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
