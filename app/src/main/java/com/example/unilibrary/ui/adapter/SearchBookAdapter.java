@@ -3,6 +3,7 @@ package com.example.unilibrary.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -57,12 +58,14 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
         private final TextView tvTitle;
         private final TextView tvAuthor;
         private final TextView tvStatus;
+        private final ImageView ivBookCover;
 
         public SearchBookViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
             tvAuthor = itemView.findViewById(R.id.tvBookAuthor);
             tvStatus = itemView.findViewById(R.id.tvBookStatus);
+            ivBookCover = itemView.findViewById(R.id.ivBookCover); // ← novo
         }
 
         public void bind(Book book, OnBookClickListener listener) {

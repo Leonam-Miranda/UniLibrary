@@ -17,15 +17,18 @@ public class Book {
     private String description;
     private BookStatus status;
     private String epubUrl;
+    private int coverResId;
 
     public Book(){}
-    public Book(Integer id, String title, String author, String description, BookStatus status, String epubUrl) {
+    public Book(Integer id, String title, String author, String description, BookStatus status, String epubUrl, int coverResId) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.description = description;
         this.status = status;
         this.epubUrl = epubUrl;
+        this.coverResId = coverResId;
+
     }
 
     public Integer getId() {
@@ -74,5 +77,11 @@ public class Book {
 
     public void setEpubUrl(String epubUrl) {
         this.epubUrl = epubUrl;
+    }
+    public int getCoverResId() {
+        return coverResId;
+    }
+    public void setCoverResId(int coverResId) {
+        this.coverResId = coverResId;
     }
 }

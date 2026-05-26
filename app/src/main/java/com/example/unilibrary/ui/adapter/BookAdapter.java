@@ -3,6 +3,7 @@ package com.example.unilibrary.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     public void onBindViewHolder(@NonNull BookViewHolder holder, int position) {
         Book book = books.get(position);
         holder.bind(book, listener);
+
     }
 
     @Override
@@ -53,14 +55,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     static class BookViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvTitle;
+        private final ImageView ivBookCover;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
+            ivBookCover = itemView.findViewById(R.id.ivBookCover);
         }
 
         public void bind(Book book, OnBookClickListener listener) {
             tvTitle.setText(book.getTitle());
+            ivBookCover.setImageResource(book.getCoverResId());
             itemView.setOnClickListener(v -> listener.onBookClick(book));
         }
     }
