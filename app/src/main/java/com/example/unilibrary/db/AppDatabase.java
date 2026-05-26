@@ -8,6 +8,7 @@ import androidx.room.Database;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.unilibrary.R;
 import com.example.unilibrary.db.Converters;
 import com.example.unilibrary.db.dao.BookDao;
 import com.example.unilibrary.db.dao.LoanDao;
@@ -21,7 +22,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = {User.class, Book.class, Loan.class},
-        version = 2
+        version = 4
 )
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
@@ -45,37 +46,39 @@ public abstract class AppDatabase extends RoomDatabase {
                                 @Override
                                 public void onCreate(@NonNull SupportSQLiteDatabase db) {
                                     super.onCreate(db);
+                                    android.util.Log.d("AppDatabase", "onCreate chamado!");
                                     Executors.newSingleThreadExecutor().execute(() -> {
+                                        android.util.Log.d("AppDatabase", "Inserindo livros...");
                                         BookDao dao = instance.bookDao();
 
                                         dao.insert(new Book(null, "Dom Casmurro", "Machado de Assis",
                                                 "Um homem relembra sua juventude e desconfia que foi traído pela esposa.",
                                                 BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/55752?utm_source=chatgpt.com"));
+                                                "https://www.gutenberg.org/ebooks/55752?utm_source=chatgpt.com",R.drawable.dom_casmurro));
                                         dao.insert(new Book(null, "O Cortiço", "Aluísio Azevedo",
                                                 "A vida dos moradores de um cortiço cheio de conflitos e pobreza.",
                                                 BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/6913?utm_source=chatgpt.com"));
+                                                "https://www.gutenberg.org/ebooks/6913?utm_source=chatgpt.com", R.drawable.o_cortico));
                                         dao.insert(new Book(null, "Frankenstein", "Mary Shelley",
                                                 "Um cientista cria uma criatura que acaba se tornando um perigo.",
                                                 BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/84?utm_source=chatgpt.com"));
+                                                "https://www.gutenberg.org/ebooks/84?utm_source=chatgpt.com", R.drawable.frankenstein ));
                                         dao.insert(new Book(null, "Dracula", "Bram Stocker",
                                                 "Um vampiro tenta espalhar o terror por várias pessoas na Idade Média.",
                                                 BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/345?utm_source=chatgpt.com"));
+                                                "https://www.gutenberg.org/ebooks/345?utm_source=chatgpt.com", R.drawable.dracula));
                                         dao.insert(new Book(null, "Alice no País das Maravilhas", "Lewis Caroll",
                                                 "Uma garota cai em um mundo estranho cheio de criaturas malucas.",
                                                 BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/11?utm_source=chatgpt.com"));
+                                                "https://www.gutenberg.org/ebooks/11?utm_source=chatgpt.com", R.drawable.alice));
                                         dao.insert(new Book(null, "Sherlock Holmes", "Arthur Conan Doyle",
                                                 "Um detetive precisa resolver um mistério usando inteligência e observação.",
                                                 BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/1661?utm_source=chatgpt.com"));
+                                                "https://www.gutenberg.org/ebooks/1661?utm_source=chatgpt.com", R.drawable.sherlock));
                                         dao.insert(new Book(null, "Moby Dick", "Herman Melville",
                                                 "Um capitão obcecado caça uma enorme baleia branca.",
                                                 BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/2701?utm_source=chatgpt.com"));
+                                                "https://www.gutenberg.org/ebooks/2701?utm_source=chatgpt.com", R.drawable.moby_dick));
                                     });
                                 }
                             })

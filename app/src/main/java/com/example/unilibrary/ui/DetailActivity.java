@@ -54,11 +54,13 @@ public class DetailActivity extends AppCompatActivity {
         TextView tvStatus = findViewById(R.id.tvBookStatus);
         TextView tvSynopsis = findViewById(R.id.tvBookSynopsis);
         ImageView ivStatusIcon = findViewById(R.id.ivStatusIcon);
+        ImageView ivBookCover = findViewById(R.id.ivBookCover);
         MaterialButton btnReserve = findViewById(R.id.btnReserve);
 
         tvTitle.setText(book.getTitle());
         tvAuthor.setText("por " + book.getAuthor());
         tvSynopsis.setText(book.getDescription());
+        ivBookCover.setImageResource(book.getCoverResId());
 
         if (book.getStatus() == BookStatus.AVAILABLE) {
             tvStatus.setText("Disponível");
