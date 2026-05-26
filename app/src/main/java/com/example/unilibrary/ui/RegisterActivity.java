@@ -12,6 +12,7 @@ import com.example.unilibrary.R;
 import com.example.unilibrary.service.AuthService;
 import com.example.unilibrary.service.Session;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -37,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
                 "Medicina"
         };
 
-        AutoCompleteTextView courseAutoComplete = findViewById(R.id.courseAutoComplete);
+        MaterialAutoCompleteTextView courseAutoComplete = findViewById(R.id.courseAutoComplete);
         if (courseAutoComplete != null) {
             ArrayAdapter<String> adapter = new ArrayAdapter<>(
                     this,
