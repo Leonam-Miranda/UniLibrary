@@ -126,65 +126,22 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="32dp"
-                android:text="Configurações"
-                android:textColor="@color/background_dark"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-            <!-- Setting Items -->
-             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingHorizontal="24dp"
-                android:gravity="center_vertical">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_lock_idle_alarm"
-                    app:tint="@color/text_secondary" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Notificações"
-                    android:textColor="@color/background_dark" />
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    app:thumbTint="@color/white"
-                    app:trackTint="@color/primary_red" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/btnLogout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:paddingHorizontal="24dp"
-                android:gravity="center_vertical"
-                android:clickable="true"
-                android:focusable="true">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel"
-                    app:tint="@color/primary_red" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Sair da Conta"
-                    android:textColor="@color/primary_red"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="48dp"
+                android:text="Sair da Conta"
+                android:textAllCaps="false"
+                android:textColor="@color/primary_red"
+                app:cornerRadius="24dp"
+                app:icon="@drawable/ic_logout"
+                app:iconPadding="8dp"
+                app:iconTint="@color/primary_red"
+                app:strokeColor="@color/primary_red"
+                app:strokeWidth="1.5dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

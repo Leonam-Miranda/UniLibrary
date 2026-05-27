@@ -54,16 +54,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
     static class BookViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvTitle;
+        private final TextView tvAuthor;
         private final ImageView ivBookCover;
 
         public BookViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
+            tvAuthor = itemView.findViewById(R.id.tvBookAuthor);
             ivBookCover = itemView.findViewById(R.id.ivBookCover);
         }
 
         public void bind(Book book, OnBookClickListener listener) {
             tvTitle.setText(book.getTitle());
+            if (tvAuthor != null) tvAuthor.setText(book.getAuthor());
             if (book.getCoverResId() != 0) {
                 ivBookCover.setImageResource(book.getCoverResId());
             } else {
