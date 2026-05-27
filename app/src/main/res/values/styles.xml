@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Botão Primário Vermelho -->
-    <style name="Widget.UniLibrary.Button.Primary" parent="Widget.MaterialComponents.Button">
+    <style name="Widget_UniLibrary_Button_Primary" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">52dp</item>
         <item name="android:backgroundTint">@color/primary_red</item>
@@ -10,11 +10,10 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="cornerRadius">8dp</item>
-        <item name="android:elevation">0dp</item>
     </style>
 
     <!-- Campo de Input -->
-    <style name="Widget.UniLibrary.TextInput" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="Widget_UniLibrary_TextInput" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="boxBackgroundColor">@color/background_input</item>
         <item name="boxStrokeColor">@color/divider</item>
         <item name="hintTextColor">@color/text_hint</item>
@@ -26,30 +25,33 @@
     </style>
 
     <!-- Títulos de Seção -->
-    <style name="TextAppearance.UniLibrary.SectionTitle" parent="TextAppearance.MaterialComponents.Headline6">
+    <style name="TextAppearance_UniLibrary_SectionTitle" parent="TextAppearance.MaterialComponents.Headline6">
         <item name="android:textColor">@color/text_primary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <!-- Texto Secundário -->
-    <style name="TextAppearance.UniLibrary.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <style name="TextAppearance_UniLibrary_Subtitle" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textSize">12sp</item>
     </style>
 
-    <!-- Card escuro -->
-    <style name="Widget.UniLibrary.Card" parent="Widget.MaterialComponents.CardView">
+    <!-- Card -->
+    <style name="Widget_UniLibrary_Card" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/background_card</item>
         <item name="cardCornerRadius">12dp</item>
         <item name="cardElevation">0dp</item>
     </style>
 
-    <!-- Bottom Navigation -->
-    <style name="Widget.UniLibrary.BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
-        <item name="backgroundColor">@color/background_card</item>
+    <!-- Bottom Navigation Estilizado (Igual à Dashboard) -->
+    <style name="Widget_UniLibrary_BottomNav" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@color/white</item>
+        <item name="elevation">8dp</item>
+        <item name="itemIconSize">26dp</item>
         <item name="itemIconTint">@color/nav_item_color</item>
         <item name="itemTextColor">@color/nav_item_color</item>
+        <item name="itemRippleColor">@color/primary_red_light</item>
         <item name="labelVisibilityMode">labeled</item>
     </style>
 
