@@ -50,4 +50,5 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     implementation("org.mindrot:jbcrypt:0.4")
+    implementation(libs.glide)
 }

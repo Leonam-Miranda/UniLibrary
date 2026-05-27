@@ -79,7 +79,10 @@ public class DetailActivity extends AppCompatActivity {
         tvTitle.setText(book.getTitle());
         tvAuthor.setText("por " + book.getAuthor());
         tvSynopsis.setText(book.getDescription());
-        ivBookCover.setImageResource(book.getCoverResId());
+        
+        if (book.getCoverResId() != 0) {
+            ivBookCover.setImageResource(book.getCoverResId());
+        }
 
         if (book.getStatus() == BookStatus.AVAILABLE) {
             tvStatus.setText("Disponível");
@@ -139,6 +142,11 @@ public class DetailActivity extends AppCompatActivity {
                 .setText(book.getTitle());
         ((TextView) sheetView.findViewById(R.id.tvSheetBookAuthor))
                 .setText(book.getAuthor());
+
+        ImageView ivSheetCover = sheetView.findViewById(R.id.imgBookCoverSheet);
+        if (ivSheetCover != null && book.getCoverResId() != 0) {
+            ivSheetCover.setImageResource(book.getCoverResId());
+        }
 
         // Data de devolução (hoje + 5 dias)
         long dueTime = System.currentTimeMillis() + (5L * 24 * 60 * 60 * 1000);

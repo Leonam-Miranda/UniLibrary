@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unilibrary.R;
@@ -65,7 +64,7 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
             tvAuthor = itemView.findViewById(R.id.tvBookAuthor);
             tvStatus = itemView.findViewById(R.id.tvBookStatus);
-            ivBookCover = itemView.findViewById(R.id.ivBookCover); // ← novo
+            ivBookCover = itemView.findViewById(R.id.ivBookCover);
         }
 
         public void bind(Book book, OnBookClickListener listener) {
@@ -73,6 +72,12 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
             tvAuthor.setText(book.getAuthor());
             ivBookCover.setImageResource(book.getCoverResId());
             
+            if (book.getCoverResId() != 0) {
+                ivBookCover.setImageResource(book.getCoverResId());
+            } else {
+                ivBookCover.setImageResource(R.color.background_light_grey);
+            }
+
             if (book.getStatus() == BookStatus.AVAILABLE) {
                 tvStatus.setText("Disponível");
                 tvStatus.setBackgroundResource(R.color.badge_available);
