@@ -45,10 +45,15 @@ public class RenewLoanActivity extends AppCompatActivity {
     private void setupUI() {
         findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
         findViewById(R.id.btnCancel).setOnClickListener(v -> finish());
-        
+
         findViewById(R.id.btnConfirmRenewal).setOnClickListener(v -> {
-            Toast.makeText(this, "Renovação confirmada!", Toast.LENGTH_SHORT).show();
-            finish();
+            loanService.renovar(loanId,
+                    erro -> Toast.makeText(this, erro, Toast.LENGTH_SHORT).show(),
+                    loan -> {
+                        Toast.makeText(this, "Renovação confirmada!", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+            );
         });
     }
 

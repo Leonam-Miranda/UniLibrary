@@ -121,4 +121,29 @@ public class LoanService {
         long diasAtraso = diff / (24L * 60 * 60 * 1000);
         return MULTA_INICIAL + (diasAtraso * MULTA_POR_DIA);
     }
+    public void renovar(int loanId,
+                        Consumer<String> onErro,
+                        Consumer<Loan> onSucesso) {
+        new Thread(() -> {
+            Loan loan = loanDao.searchById(loanId);
+
+            if (loan == null || loan.isReturned()) {
+                mainThread.post(() -> onErro.accept("Empréstimo não encontrado"));
+                return;
+            }
+
+            if (loan.isRenewed()) {
+                mainThread.post(() -> onErro.accept("Este empréstimo já foi renovado uma vez"));
+                return;
+            }
+
+            // Adiciona 14 dias à data de vencimento atual
+            Date novaDueDate = new Date(loan.getDueDate().getTime() + (14L * 24 * 60 * 60 * 1000));
+            loan.setDueDate(novaDueDate);
+            loan.setRenewed(true);
+            loanDao.update(loan);
+
+            mainThread.post(() -> onSucesso.accept(loan));
+        }).start();
+    }
 }
