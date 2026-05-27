@@ -22,6 +22,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
 
     public interface OnLoanClickListener {
         void onRenewClick(LoanWithBook loan);
+        void onReturnClick(LoanWithBook loan);
     }
 
     public LoanAdapter(OnLoanClickListener listener) {
@@ -54,7 +55,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
     static class LoanViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvTitle, tvAuthor, tvDueDate;
         private final ImageView ivCover;
-        private final View btnRenew;
+        private final View btnRenew, btnReturn;
 
         public LoanViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +64,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
             tvDueDate = itemView.findViewById(R.id.tvDueDate);
             ivCover = itemView.findViewById(R.id.ivBookCover);
             btnRenew = itemView.findViewById(R.id.btnRenew);
+            btnReturn = itemView.findViewById(R.id.btnReturn);
         }
 
         public void bind(LoanWithBook loanWithBook, OnLoanClickListener listener) {
@@ -88,6 +90,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
             }
 
             btnRenew.setOnClickListener(v -> listener.onRenewClick(loanWithBook));
+            btnReturn.setOnClickListener(v -> listener.onReturnClick(loanWithBook));
         }
     }
 }

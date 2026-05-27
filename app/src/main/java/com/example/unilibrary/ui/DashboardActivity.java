@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unilibrary.R;
+import com.example.unilibrary.model.LoanWithBook;
 import com.example.unilibrary.service.BookService;
 import com.example.unilibrary.service.LoanService;
 import com.example.unilibrary.service.Session;
@@ -47,10 +49,21 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Loans RecyclerView
         RecyclerView rvLoans = findViewById(R.id.rvDashboardLoans);
-        loanAdapter = new LoanAdapter(loan -> {
-            Intent intent = new Intent(this, RenewLoanActivity.class);
-            intent.putExtra("loan_id", loan.loan.getId());
-            startActivity(intent);
+        loanAdapter = new LoanAdapter(new LoanAdapter.OnLoanClickListener() {
+            @Override
+            public void onRenewClick(LoanWithBook loan) {
+                Intent intent = new Intent(DashboardActivity.this, RenewLoanActivity.class);
+                intent.putExtra("loan_id", loan.loan.getId());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onReturnClick(LoanWithBook loan) {
+                loanService.devolver(loan.loan.getId(),
+                        erro -> Toast.makeText(DashboardActivity.this, erro, Toast.LENGTH_SHORT).show(),
+                        l -> Toast.makeText(DashboardActivity.this, "Livro devolvido com sucesso!", Toast.LENGTH_SHORT).show()
+                );
+            }
         });
         rvLoans.setAdapter(loanAdapter);
     }

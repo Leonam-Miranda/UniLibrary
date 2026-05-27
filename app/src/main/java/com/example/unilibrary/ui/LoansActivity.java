@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unilibrary.R;
+import com.example.unilibrary.model.LoanWithBook;
 import com.example.unilibrary.service.LoanService;
 import com.example.unilibrary.service.Session;
 import com.example.unilibrary.ui.adapter.LoanAdapter;
@@ -30,9 +31,21 @@ public class LoansActivity extends AppCompatActivity {
 
     private void setupRecyclerView() {
         RecyclerView rv = findViewById(R.id.rvLoans);
-        adapter = new LoanAdapter(loan -> {
-            // Lógica de renovação (pode ser implementada depois)
-            Toast.makeText(this, "Renovação solicitada para: " + loan.book.getTitle(), Toast.LENGTH_SHORT).show();
+        adapter = new LoanAdapter(new LoanAdapter.OnLoanClickListener() {
+            @Override
+            public void onRenewClick(LoanWithBook loan) {
+                Intent intent = new Intent(LoansActivity.this, RenewLoanActivity.class);
+                intent.putExtra("loan_id", loan.loan.getId());
+                startActivity(intent);
+            }
+
+            @Override
+            public void onReturnClick(LoanWithBook loan) {
+                loanService.devolver(loan.loan.getId(),
+                        erro -> Toast.makeText(LoansActivity.this, erro, Toast.LENGTH_SHORT).show(),
+                        l -> Toast.makeText(LoansActivity.this, "Livro devolvido!", Toast.LENGTH_SHORT).show()
+                );
+            }
         });
         rv.setAdapter(adapter);
     }
