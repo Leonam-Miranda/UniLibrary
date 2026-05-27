@@ -33,6 +33,7 @@
         <activity android:name=".ui.DetailActivity" android:exported="false" />
         <activity android:name=".ui.ReaderActivity" android:exported="false" />
         <activity android:name=".ui.RenewLoanActivity" android:exported="false" />
+        <activity android:name=".ui.ForgotPasswordActivity" android:exported="false" />
 
     </application>
 
