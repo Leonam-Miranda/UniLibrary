@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import androidx.core.util.Consumer;
+import androidx.lifecycle.LiveData;
 
 import com.example.unilibrary.db.AppDatabase;
 import com.example.unilibrary.db.dao.BookDao;
@@ -13,9 +14,11 @@ import com.example.unilibrary.db.dao.UserDao;
 import com.example.unilibrary.enums.BookStatus;
 import com.example.unilibrary.model.Book;
 import com.example.unilibrary.model.Loan;
+import com.example.unilibrary.model.LoanWithBook;
 import com.example.unilibrary.model.User;
 
 import java.util.Date;
+import java.util.List;
 
 // service/LoanService.java
 public class LoanService {
@@ -35,6 +38,10 @@ public class LoanService {
         loanDao = db.loanDao();
         bookDao = db.bookDao();
         userDao = db.userDao();
+    }
+
+    public LiveData<List<LoanWithBook>> getActiveLoans(int userId) {
+        return loanDao.findAssetsWithBook(userId);
     }
 
     // ALUGAR

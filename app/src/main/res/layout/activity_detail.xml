@@ -68,7 +68,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/tvBookTitle"
+                android:id="@+id/bookTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -79,7 +79,7 @@
                 android:gravity="center"/>
 
             <TextView
-                android:id="@+id/tvBookAuthor"
+                android:id="@+id/bookAuthor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Autor do Livro"
@@ -122,7 +122,7 @@
                             android:textSize="10sp"
                             android:textStyle="bold" />
                         <TextView
-                            android:id="@+id/tvBookStatus"
+                            android:id="@+id/tvStatus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Disponível"
@@ -182,7 +182,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvBookSynopsis"
+                android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
