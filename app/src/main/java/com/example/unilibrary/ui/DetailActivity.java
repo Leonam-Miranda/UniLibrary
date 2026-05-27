@@ -32,6 +32,7 @@ public class DetailActivity extends AppCompatActivity {
     private UserDao userDao;
     private LoanService loanService;
     private Book book;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,14 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        // Carregar livro em background
+        // Carregar livro e usuário em background
         new Thread(() -> {
             book = bookDao.searchById(bookId);
+            int userId = Session.getUserId(this);
+            if (userId != -1) {
+                currentUser = userDao.searchById(userId);
+            }
+            
             runOnUiThread(() -> {
                 if (book == null) {
                     Toast.makeText(this, "Livro não encontrado", Toast.LENGTH_SHORT).show();
@@ -75,6 +81,7 @@ public class DetailActivity extends AppCompatActivity {
         ImageView ivBookCover = findViewById(R.id.ivBookCover);
         MaterialButton btnReserve = findViewById(R.id.btnReserve);
         MaterialButton btnReadOnline = findViewById(R.id.btnReadOnline);
+        MaterialButton btnSaveBook = findViewById(R.id.btnSaveBook);
 
         tvTitle.setText(book.getTitle());
         tvAuthor.setText("por " + book.getAuthor());
@@ -104,28 +111,47 @@ public class DetailActivity extends AppCompatActivity {
         if (btnReadOnline != null) {
             btnReadOnline.setOnClickListener(v -> {
                 if (book.getEpubUrl() != null && !book.getEpubUrl().isEmpty()) {
-                    // 1. Redirecionar para o link
                     Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.getEpubUrl()));
                     startActivity(browserIntent);
-
-                    // 2. Incrementar contador de livros lidos no perfil
                     incrementReadBooksCount();
                 } else {
                     Toast.makeText(this, "Link de leitura não disponível para este livro", Toast.LENGTH_SHORT).show();
                 }
             });
         }
+
+        // Configuração do botão Salvar Livro
+        if (btnSaveBook != null && currentUser != null) {
+            updateSaveButtonUI(btnSaveBook);
+            btnSaveBook.setOnClickListener(v -> {
+                new Thread(() -> {
+                    currentUser.toggleSaveBook(book.getId());
+                    userDao.update(currentUser);
+                    runOnUiThread(() -> {
+                        updateSaveButtonUI(btnSaveBook);
+                        String msg = currentUser.isBookSaved(book.getId()) ? "Adicionado aos salvos" : "Removido dos salvos";
+                        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+                    });
+                }).start();
+            });
+        }
+    }
+
+    private void updateSaveButtonUI(MaterialButton btn) {
+        if (currentUser.isBookSaved(book.getId())) {
+            btn.setText("Retirar dos salvos");
+            btn.setIconResource(android.R.drawable.btn_star_big_on);
+        } else {
+            btn.setText("Adicionar aos salvos");
+            btn.setIconResource(android.R.drawable.btn_star_big_off);
+        }
     }
 
     private void incrementReadBooksCount() {
-        int userId = Session.getUserId(this);
-        if (userId != -1) {
+        if (currentUser != null) {
             new Thread(() -> {
-                User user = userDao.searchById(userId);
-                if (user != null) {
-                    user.readBooks++;
-                    userDao.update(user);
-                }
+                currentUser.readBooks++;
+                userDao.update(currentUser);
             }).start();
         }
     }
@@ -137,7 +163,6 @@ public class DetailActivity extends AppCompatActivity {
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         dialog.setContentView(sheetView);
 
-        // Preencher dados do livro
         ((TextView) sheetView.findViewById(R.id.tvSheetBookTitle))
                 .setText(book.getTitle());
         ((TextView) sheetView.findViewById(R.id.tvSheetBookAuthor))
@@ -148,13 +173,11 @@ public class DetailActivity extends AppCompatActivity {
             ivSheetCover.setImageResource(book.getCoverResId());
         }
 
-        // Data de devolução (hoje + 5 dias)
         long dueTime = System.currentTimeMillis() + (5L * 24 * 60 * 60 * 1000);
         String dueDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                 .format(new Date(dueTime));
         ((TextView) sheetView.findViewById(R.id.tvDueDate)).setText(dueDate);
 
-        // Confirmar empréstimo
         sheetView.findViewById(R.id.btnConfirmLoan).setOnClickListener(btn -> {
             dialog.dismiss();
             int userId = Session.getUserId(this);
@@ -169,7 +192,6 @@ public class DetailActivity extends AppCompatActivity {
             );
         });
 
-        // Cancelar
         sheetView.findViewById(R.id.btnCancelLoan)
                 .setOnClickListener(btn -> dialog.dismiss());
 
