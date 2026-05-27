@@ -17,12 +17,7 @@
         android:paddingEnd="16dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/btnBack"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@color/black" />
+
 
         <TextView
             android:layout_width="0dp"

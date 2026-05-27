@@ -149,9 +149,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:itemIconTint="@color/primary_red"
-        app:itemTextColor="@color/primary_red"
+        style="@style/Widget_UniLibrary_BottomNav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu" />
 

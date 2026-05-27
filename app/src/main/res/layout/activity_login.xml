@@ -23,11 +23,9 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/ic_launcher_foreground"
-                app:tint="@color/primary_red" />
-
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/logo_app" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

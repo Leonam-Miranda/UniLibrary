@@ -84,20 +84,51 @@ public class SearchActivity extends AppCompatActivity {
 
     private void setupNavigation() {
         BottomNavigationView nav = findViewById(R.id.bottomNavigation);
+
         nav.setSelectedItemId(R.id.nav_search);
+
         nav.setOnItemSelectedListener(item -> {
+
             int id = item.getItemId();
-            if (id == R.id.nav_home) {
-                startActivity(new Intent(this, DashboardActivity.class));
-                return true;
-            } else if (id == R.id.nav_loans) {
-                startActivity(new Intent(this, LoansActivity.class));
-                return true;
-            } else if (id == R.id.nav_profile) {
-                startActivity(new Intent(this, ProfileActivity.class));
+
+            if (id == R.id.nav_search) {
                 return true;
             }
-            return id == R.id.nav_search;
+
+            if (id == R.id.nav_home) {
+
+                Intent intent = new Intent(this, DashboardActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                startActivity(intent);
+                finish();
+
+                return true;
+            }
+
+            if (id == R.id.nav_loans) {
+
+                Intent intent = new Intent(this, LoansActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                startActivity(intent);
+                finish();
+
+                return true;
+            }
+
+            if (id == R.id.nav_profile) {
+
+                Intent intent = new Intent(this, ProfileActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+
+                startActivity(intent);
+                finish();
+
+                return true;
+            }
+
+            return false;
         });
     }
 }
