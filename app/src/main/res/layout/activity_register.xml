@@ -51,36 +51,112 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/registerTitle" />
 
+        <!-- Avatar selecionado -->
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/photoContainer"
+            android:id="@+id/selectedAvatarCard"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="32dp"
-            app:cardBackgroundColor="#F5F6F8"
             app:cardCornerRadius="50dp"
-            app:cardElevation="0dp"
+            app:cardElevation="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/registerSubtitle">
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:src="@android:drawable/ic_menu_camera"
-                app:tint="@color/text_secondary" />
+                android:id="@+id/ivSelectedAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/boypfp" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/tvPhotoLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/label_photo"
+            android:layout_marginTop="8dp"
+            android:text="Escolha seu avatar"
             android:textColor="@color/text_secondary"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/photoContainer" />
+            app:layout_constraintTop_toBottomOf="@id/selectedAvatarCard" />
+
+        <!-- Grade de avatares -->
+        <GridLayout
+            android:id="@+id/avatarGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:columnCount="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPhotoLabel">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatar1"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:layout_margin="6dp" app:cardCornerRadius="30dp"
+                app:strokeColor="@color/primary_red" app:strokeWidth="2dp">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@drawable/boypfp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatar2"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:layout_margin="6dp" app:cardCornerRadius="30dp"
+                app:strokeColor="@color/background_light_grey" app:strokeWidth="2dp">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@drawable/chickenpfp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatar3"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:layout_margin="6dp" app:cardCornerRadius="30dp"
+                app:strokeColor="@color/background_light_grey" app:strokeWidth="2dp">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@drawable/dragonpfp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatar4"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:layout_margin="6dp" app:cardCornerRadius="30dp"
+                app:strokeColor="@color/background_light_grey" app:strokeWidth="2dp">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@drawable/monkeypfp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatar5"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:layout_margin="6dp" app:cardCornerRadius="30dp"
+                app:strokeColor="@color/background_light_grey" app:strokeWidth="2dp">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@drawable/pandapfp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatar6"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:layout_margin="6dp" app:cardCornerRadius="30dp"
+                app:strokeColor="@color/background_light_grey" app:strokeWidth="2dp">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@drawable/penguinpfp" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/avatar7"
+                android:layout_width="60dp" android:layout_height="60dp"
+                android:layout_margin="6dp" app:cardCornerRadius="30dp"
+                app:strokeColor="@color/background_light_grey" app:strokeWidth="2dp">
+                <ImageView android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@drawable/womanpfp" />
+            </com.google.android.material.card.MaterialCardView>
+
+        </GridLayout>
 
         <!-- Nome Completo -->
         <TextView
@@ -93,7 +169,7 @@
             android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPhotoLabel" />
+            app:layout_constraintTop_toBottomOf="@id/avatarGrid" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameLayout"
