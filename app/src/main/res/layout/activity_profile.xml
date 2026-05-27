@@ -11,7 +11,8 @@
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="24dp"
         android:orientation="horizontal"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -55,7 +56,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:background="@color/background_light_grey" />
+                        android:background="@color/background_light_grey"
+                        android:src="@android:drawable/ic_menu_gallery"
+                        app:tint="@color/text_secondary" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout
@@ -69,17 +72,19 @@
                     app:layout_constraintTop_toTopOf="@id/profileImageCard">
 
                     <TextView
+                        android:id="@+id/profileName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Marina Silva"
+                        android:text="Carregando..."
                         android:textColor="@color/background_dark"
                         android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/profileEmail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Estudante de Meio Ambiente"
+                        android:text="email@uni.edu.br"
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -109,8 +114,15 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="24" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LIVROS" android:textColor="@color/text_secondary" android:textSize="10sp" android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvBooksReadCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="@color/primary_red"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="LIDOS" android:textColor="@color/text_secondary" android:textSize="10sp" android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -119,8 +131,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="EMPRÉSTIMOS" android:textColor="@color/text_secondary" android:textSize="10sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NÍVEL" android:textColor="@color/text_secondary" android:textSize="10sp" android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -129,87 +141,10 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SALVOS" android:textColor="@color/text_secondary" android:textSize="10sp" android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:paddingHorizontal="24dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Atividade Recente"
-                    android:textColor="@color/background_dark"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver Tudo"
-                    android:textColor="@color/primary_red"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <!-- Activity List Item 1 -->
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="24dp"
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/background_light_grey"
-                app:strokeWidth="1dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background_light_grey"
-                    android:padding="8dp"
-                    android:gravity="center_vertical">
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="40dp"
-                        android:layout_height="60dp"
-                        app:cardCornerRadius="4dp">
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:scaleType="centerCrop" />
-                    </com.google.android.material.card.MaterialCardView>
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="The Design of Everyday Things"
-                            android:textColor="@color/background_dark"
-                            android:textSize="12sp"
-                            android:textStyle="bold" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Don Norman"
-                            android:textColor="@color/text_secondary"
-                            android:textSize="10sp" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Devolvido em 2 dias"
-                        android:textColor="@color/primary_red"
-                        android:textSize="10sp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -221,8 +156,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Setting Item 1 -->
-            <LinearLayout
+            <!-- Setting Items... (kept static for now) -->
+             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -248,37 +183,27 @@
                     app:trackTint="@color/primary_red" />
             </LinearLayout>
 
-            <!-- Setting Item 2 -->
             <LinearLayout
+                android:id="@+id/btnLogout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:paddingHorizontal="24dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_sort_alphabetically"
-                    app:tint="@color/text_secondary" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Idioma"
-                    android:textColor="@color/background_dark" />
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    app:tint="@color/primary_red" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Português (BR)"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="12sp" />
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginStart="4dp"
-                    android:src="@android:drawable/ic_menu_more"
-                    app:tint="@color/text_secondary" />
+                    android:layout_marginStart="16dp"
+                    android:text="Sair da Conta"
+                    android:textColor="@color/primary_red"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>

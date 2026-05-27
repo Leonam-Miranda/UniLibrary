@@ -1,6 +1,7 @@
 package com.example.unilibrary.ui;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -10,49 +11,60 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.unilibrary.R;
 import com.example.unilibrary.enums.BookStatus;
 import com.example.unilibrary.model.Book;
-import com.example.unilibrary.service.BookService;
+import com.example.unilibrary.db.AppDatabase;
+import com.example.unilibrary.db.dao.BookDao;
+import com.example.unilibrary.service.LoanService;
+import com.example.unilibrary.service.Session;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class DetailActivity extends AppCompatActivity {
-    private BookService bookService;
+
+    private BookDao bookDao;
+    private LoanService loanService;
+    private Book book;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        bookService = new BookService(this);
+        bookDao = AppDatabase.getInstance(this).bookDao();
+        loanService = new LoanService(this);
 
         ImageView btnBack = findViewById(R.id.btnBack);
-        if (btnBack != null) {
-            btnBack.setOnClickListener(v -> onBackPressed());
-        }
+        if (btnBack != null) btnBack.setOnClickListener(v -> onBackPressed());
 
         int bookId = getIntent().getIntExtra("book_id", -1);
-        if (bookId != -1) {
-            loadBookDetails(bookId);
-        } else {
+        if (bookId == -1) {
             Toast.makeText(this, "Erro ao carregar livro", Toast.LENGTH_SHORT).show();
             finish();
+            return;
         }
-    }
 
-    private void loadBookDetails(int bookId) {
-        bookService.getBookById(bookId, book -> {
-            if (book != null) {
+        // Carregar livro em background
+        new Thread(() -> {
+            book = bookDao.searchById(bookId);
+            runOnUiThread(() -> {
+                if (book == null) {
+                    Toast.makeText(this, "Livro não encontrado", Toast.LENGTH_SHORT).show();
+                    finish();
+                    return;
+                }
                 populateUI(book);
-            } else {
-                Toast.makeText(this, "Livro não encontrado", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
+            });
+        }).start();
     }
 
     private void populateUI(Book book) {
-        TextView tvTitle = findViewById(R.id.tvBookTitle);
-        TextView tvAuthor = findViewById(R.id.tvBookAuthor);
-        TextView tvStatus = findViewById(R.id.tvBookStatus);
-        TextView tvSynopsis = findViewById(R.id.tvBookSynopsis);
+        TextView tvTitle    = findViewById(R.id.bookTitle);
+        TextView tvAuthor   = findViewById(R.id.bookAuthor);
+        TextView tvStatus   = findViewById(R.id.tvStatus);
+        TextView tvSynopsis = findViewById(R.id.tvDescription);
         ImageView ivStatusIcon = findViewById(R.id.ivStatusIcon);
         MaterialButton btnReserve = findViewById(R.id.btnReserve);
 
@@ -62,16 +74,59 @@ public class DetailActivity extends AppCompatActivity {
 
         if (book.getStatus() == BookStatus.AVAILABLE) {
             tvStatus.setText("Disponível");
-            tvStatus.setTextColor(getResources().getColor(R.color.black));
-            ivStatusIcon.setColorFilter(getResources().getColor(R.color.badge_available));
+            tvStatus.setTextColor(getColor(R.color.black));
+            ivStatusIcon.setColorFilter(getColor(R.color.badge_available));
             btnReserve.setEnabled(true);
             btnReserve.setText("Reservar Empréstimo");
+            btnReserve.setOnClickListener(v -> showLoanBottomSheet());
         } else {
             tvStatus.setText("Indisponível");
-            tvStatus.setTextColor(getResources().getColor(R.color.text_secondary));
-            ivStatusIcon.setColorFilter(getResources().getColor(R.color.badge_unavailable));
+            tvStatus.setTextColor(getColor(R.color.text_secondary));
+            ivStatusIcon.setColorFilter(getColor(R.color.badge_unavailable));
             btnReserve.setEnabled(false);
+            btnReserve.setAlpha(0.5f);
             btnReserve.setText("Livro já emprestado");
         }
+    }
+
+    private void showLoanBottomSheet() {
+        View sheetView = getLayoutInflater()
+                .inflate(R.layout.bottom_sheet_loan, null);
+
+        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        dialog.setContentView(sheetView);
+
+        // Preencher dados do livro
+        ((TextView) sheetView.findViewById(R.id.tvSheetBookTitle))
+                .setText(book.getTitle());
+        ((TextView) sheetView.findViewById(R.id.tvSheetBookAuthor))
+                .setText(book.getAuthor());
+
+        // Data de devolução (hoje + 5 dias)
+        long dueTime = System.currentTimeMillis() + (5L * 24 * 60 * 60 * 1000);
+        String dueDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                .format(new Date(dueTime));
+        ((TextView) sheetView.findViewById(R.id.tvDueDate)).setText(dueDate);
+
+        // Confirmar empréstimo
+        sheetView.findViewById(R.id.btnConfirmLoan).setOnClickListener(btn -> {
+            dialog.dismiss();
+            int userId = Session.getUserId(this);
+            loanService.alugar(userId, book.getId(),
+                    erro -> Toast.makeText(this, erro, Toast.LENGTH_SHORT).show(),
+                    loan -> {
+                        Toast.makeText(this,
+                                "Empréstimo realizado! Devolva até " + dueDate,
+                                Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+            );
+        });
+
+        // Cancelar
+        sheetView.findViewById(R.id.btnCancelLoan)
+                .setOnClickListener(btn -> dialog.dismiss());
+
+        dialog.show();
     }
 }

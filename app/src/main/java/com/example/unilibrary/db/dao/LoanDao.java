@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.unilibrary.model.Loan;
+import com.example.unilibrary.model.LoanWithBook;
 
 import java.util.List;
 
@@ -21,8 +22,9 @@ public interface LoanDao {
     @Update
     void update(Loan loan);
 
+    @androidx.room.Transaction
     @Query("SELECT * FROM loan WHERE userId = :userId AND returned = 0")
-    LiveData<List<Loan>> findAssets(int userId);
+    LiveData<List<LoanWithBook>> findAssetsWithBook(int userId);
 
     @Query("SELECT COUNT(*) FROM loan WHERE userId = :userId AND returned = 0")
     int accountActives(int userId);   // para checar limite de 3
