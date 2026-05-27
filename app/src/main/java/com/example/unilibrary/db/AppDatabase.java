@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = {User.class, Book.class, Loan.class},
-        version = 11
+        version = 12
 )
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {

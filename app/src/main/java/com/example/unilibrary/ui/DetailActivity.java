@@ -21,6 +21,7 @@ import com.example.unilibrary.service.LoanService;
 import com.example.unilibrary.service.Session;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -162,6 +163,29 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    private void showSuccessDialog(String idCode) {
+        String today = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Reserva Confirmada!")
+                .setMessage("Reserva confirmada no dia " + today + ".\n\n" +
+                        "Retirar na biblioteca em até 24horas.\n\n" +
+                        "Número de identificação: " + idCode)
+                .setPositiveButton("Entendido", (dialog, which) -> finish())
+                .setCancelable(false)
+                .show();
+    }
+
+    private String generateRandomCode(int length) {
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder sb = new StringBuilder();
+        java.util.Random random = new java.util.Random();
+        for (int i = 0; i < length; i++) {
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        }
+        return sb.toString();
+    }
+
     private void showLoanBottomSheet() {
         View sheetView = getLayoutInflater()
                 .inflate(R.layout.bottom_sheet_loan, null);
@@ -189,12 +213,7 @@ public class DetailActivity extends AppCompatActivity {
             int userId = Session.getUserId(this);
             loanService.alugar(userId, book.getId(),
                     erro -> Toast.makeText(this, erro, Toast.LENGTH_SHORT).show(),
-                    loan -> {
-                        Toast.makeText(this,
-                                "Empréstimo realizado! Devolva até " + dueDate,
-                                Toast.LENGTH_LONG).show();
-                        finish();
-                    }
+                    loan -> showSuccessDialog(loan.getReservationCode())
             );
         });
 

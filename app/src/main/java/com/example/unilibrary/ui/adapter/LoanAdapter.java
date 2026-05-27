@@ -53,7 +53,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
     }
 
     static class LoanViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tvTitle, tvAuthor, tvDueDate;
+        private final TextView tvTitle, tvAuthor, tvDueDate, tvReservationCode;
         private final ImageView ivCover;
         private final View btnRenew, btnReturn;
 
@@ -62,6 +62,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
             tvAuthor = itemView.findViewById(R.id.tvBookAuthor);
             tvDueDate = itemView.findViewById(R.id.tvDueDate);
+            tvReservationCode = itemView.findViewById(R.id.tvReservationCode);
             ivCover = itemView.findViewById(R.id.ivBookCover);
             btnRenew = itemView.findViewById(R.id.btnRenew);
             btnReturn = itemView.findViewById(R.id.btnReturn);
@@ -70,6 +71,10 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
         public void bind(LoanWithBook loanWithBook, OnLoanClickListener listener) {
             tvTitle.setText(loanWithBook.book.getTitle());
             tvAuthor.setText(loanWithBook.book.getAuthor());
+            
+            if (tvReservationCode != null && loanWithBook.loan.getReservationCode() != null) {
+                tvReservationCode.setText("ID: " + loanWithBook.loan.getReservationCode());
+            }
 
             // Carregar imagem
             if (loanWithBook.book.getCoverResId() != 0) {

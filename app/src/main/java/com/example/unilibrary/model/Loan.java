@@ -39,6 +39,7 @@ public class Loan {
     private double fine;
     private boolean returned;
     private boolean renewed = false;
+    private String reservationCode;
 
     public Loan() {}
 
@@ -49,6 +50,17 @@ public class Loan {
         this.dueDate = new Date(loanDate.getTime() + (5L * 24 * 60 * 60 * 1000));
         this.fine = 0.0;
         this.returned = false;
+        this.reservationCode = generateReservationCode();
+    }
+
+    private String generateReservationCode() {
+        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        StringBuilder sb = new StringBuilder();
+        java.util.Random random = new java.util.Random();
+        for (int i = 0; i < 12; i++) {
+            sb.append(chars.charAt(random.nextInt(chars.length())));
+        }
+        return sb.toString();
     }
 
     public Integer getId() { return id; }
@@ -75,6 +87,8 @@ public class Loan {
     public void setFine(double fine) { this.fine = fine; }
     public boolean isReturned() { return returned; }
     public void setReturned(boolean returned) { this.returned = returned; }
-    public boolean isRenewed() { return renewed; }        // ← novo
-    public void setRenewed(boolean renewed) { this.renewed = renewed; } // ← novo
+    public boolean isRenewed() { return renewed; }
+    public void setRenewed(boolean renewed) { this.renewed = renewed; }
+    public String getReservationCode() { return reservationCode; }
+    public void setReservationCode(String reservationCode) { this.reservationCode = reservationCode; }
 }
