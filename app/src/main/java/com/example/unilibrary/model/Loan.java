@@ -38,6 +38,7 @@ public class Loan {
 
     private double fine;
     private boolean returned;
+    private boolean renewed = false;
 
     public Loan() {}
 
@@ -74,4 +75,6 @@ public class Loan {
     public void setFine(double fine) { this.fine = fine; }
     public boolean isReturned() { return returned; }
     public void setReturned(boolean returned) { this.returned = returned; }
+    public boolean isRenewed() { return renewed; }        // ← novo
+    public void setRenewed(boolean renewed) { this.renewed = renewed; } // ← novo
 }
