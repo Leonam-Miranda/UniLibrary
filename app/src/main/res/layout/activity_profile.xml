@@ -53,12 +53,11 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
                     <ImageView
+                        android:id="@+id/ivProfileAvatar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:background="@color/background_light_grey"
-                        android:src="@android:drawable/ic_menu_gallery"
-                        app:tint="@color/text_secondary" />
+                        android:src="@drawable/boypfp" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <LinearLayout

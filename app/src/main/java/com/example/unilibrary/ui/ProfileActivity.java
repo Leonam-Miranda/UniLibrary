@@ -2,6 +2,7 @@ package com.example.unilibrary.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,11 +59,14 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvEmail = findViewById(R.id.profileEmail);
         TextView tvBooksRead = findViewById(R.id.tvBooksReadCount);
         TextView tvSavedBooks = findViewById(R.id.tvSavedBooksCount);
+        ImageView ivAvatar = findViewById(R.id.ivProfileAvatar);
 
         if (tvName != null) tvName.setText(user.getName());
         if (tvEmail != null) tvEmail.setText(user.getEmail());
         if (tvBooksRead != null) tvBooksRead.setText(String.valueOf(user.readBooks));
-        if (tvSavedBooks != null) tvSavedBooks.setText(String.valueOf(user.getSavedBooksCount())); // ← novo
+        if (tvSavedBooks != null) tvSavedBooks.setText(String.valueOf(user.getSavedBooksCount()));
+        if (ivAvatar != null && user.getAvatarResId() != 0)  // ← novo
+            ivAvatar.setImageResource(user.getAvatarResId());// ← novo
     }
 
     private void setupNavigation() {

@@ -18,6 +18,8 @@ public class User {
     @NonNull
     private String passwordHash;
 
+    private int avatarResId;
+
     public int readBooks = 0;
     public int savedBooksCount = 0;
     private String savedBookIds = ""; // Armazena IDs como "1,2,5,"
@@ -56,6 +58,8 @@ public class User {
 
     public String getSavedBookIds() { return savedBookIds == null ? "" : savedBookIds; }
     public void setSavedBookIds(String savedBookIds) { this.savedBookIds = savedBookIds; }
+    public int getAvatarResId() { return avatarResId; }
+    public void setAvatarResId(int avatarResId) { this.avatarResId = avatarResId; }
 
     // Helper para verificar se um livro está salvo
     public boolean isBookSaved(int bookId) {
