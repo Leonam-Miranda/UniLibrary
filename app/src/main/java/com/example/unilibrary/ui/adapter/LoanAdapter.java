@@ -3,6 +3,7 @@ package com.example.unilibrary.ui.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.unilibrary.R;
 import com.example.unilibrary.model.LoanWithBook;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder> {
 
@@ -55,6 +53,7 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
 
     static class LoanViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvTitle, tvAuthor, tvDueDate;
+        private final ImageView ivCover;
         private final View btnRenew;
 
         public LoanViewHolder(@NonNull View itemView) {
@@ -62,12 +61,20 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.LoanViewHolder
             tvTitle = itemView.findViewById(R.id.tvBookTitle);
             tvAuthor = itemView.findViewById(R.id.tvBookAuthor);
             tvDueDate = itemView.findViewById(R.id.tvDueDate);
+            ivCover = itemView.findViewById(R.id.ivBookCover);
             btnRenew = itemView.findViewById(R.id.btnRenew);
         }
 
         public void bind(LoanWithBook loanWithBook, OnLoanClickListener listener) {
             tvTitle.setText(loanWithBook.book.getTitle());
             tvAuthor.setText(loanWithBook.book.getAuthor());
+
+            // Carregar imagem
+            if (loanWithBook.book.getCoverResId() != 0) {
+                ivCover.setImageResource(loanWithBook.book.getCoverResId());
+            } else {
+                ivCover.setImageResource(R.color.background_light_grey);
+            }
 
             long diff = loanWithBook.loan.getDueDate().getTime() - System.currentTimeMillis();
             long days = diff / (24L * 60 * 60 * 1000);
