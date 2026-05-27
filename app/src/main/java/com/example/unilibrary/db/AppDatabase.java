@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = {User.class, Book.class, Loan.class},
-        version = 7
+        version = 10
 )
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
@@ -41,51 +41,15 @@ public abstract class AppDatabase extends RoomDatabase {
                                     ctx.getApplicationContext(),
                                     AppDatabase.class,
                                     "biblioteca.db"
-                            ).fallbackToDestructiveMigration()
-                            .addCallback(new RoomDatabase.Callback() {     // ← começa aqui
+                            )
+                            .fallbackToDestructiveMigration()
+                            .addCallback(new RoomDatabase.Callback() {
                                 @Override
-                                public void onCreate(@NonNull SupportSQLiteDatabase db) {
-                                    super.onCreate(db);
-                                    android.util.Log.d("AppDatabase", "onCreate chamado!");
-                                    Executors.newSingleThreadExecutor().execute(() -> {
-                                        android.util.Log.d("AppDatabase", "Inserindo livros...");
-                                        BookDao dao = instance.bookDao();
-
-                                        dao.insert(new Book(null, "Dom Casmurro", "Machado de Assis",
-                                                "Um homem relembra sua juventude e desconfia que foi traído pela esposa. Gênero: Ficção, Clássico.",
-                                                BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/55752?utm_source=chatgpt.com", R.drawable.dom_casmurro));
-                                        
-                                        dao.insert(new Book(null, "O Cortiço", "Aluísio Azevedo",
-                                                "A vida dos moradores de um cortiço cheio de conflitos e pobreza. Gênero: Realismo, Ficção.",
-                                                BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/6913?utm_source=chatgpt.com", R.drawable.o_cortico));
-                                        
-                                        dao.insert(new Book(null, "Frankenstein", "Mary Shelley",
-                                                "Um cientista cria uma criatura que acaba se tornando um perigo. Gênero: Ficção Científica, Horror.",
-                                                BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/84?utm_source=chatgpt.com", R.drawable.frankenstein));
-                                        
-                                        dao.insert(new Book(null, "Dracula", "Bram Stocker",
-                                                "Um vampiro tenta espalhar o terror por várias pessoas na Idade Média. Gênero: Horror, Romance Gótico.",
-                                                BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/345?utm_source=chatgpt.com", R.drawable.dracula));
-                                        
-                                        dao.insert(new Book(null, "Alice no País das Maravilhas", "Lewis Caroll",
-                                                "Uma garota cai em um mundo estranho cheio de criaturas malucas. Gênero: Fantasia, Ficção.",
-                                                BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/11?utm_source=chatgpt.com", R.drawable.alice));
-                                        
-                                        dao.insert(new Book(null, "Sherlock Holmes", "Arthur Conan Doyle",
-                                                "Um detetive precisa resolver um mistério usando inteligência e observação. Gênero: Mistério, Ficção.",
-                                                BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/1661?utm_source=chatgpt.com", R.drawable.sherlock));
-                                        
-                                        dao.insert(new Book(null, "Moby Dick", "Herman Melville",
-                                                "Um capitão obcecado caça uma enorme baleia branca. Gênero: Aventura, Ficção.",
-                                                BookStatus.AVAILABLE,
-                                                "https://www.gutenberg.org/ebooks/2701?utm_source=chatgpt.com", R.drawable.moby_dick));
-                                    });
+                                public void onOpen(@NonNull SupportSQLiteDatabase db) {
+                                    super.onOpen(db);
+                                    // Ao abrir o banco (incluindo após migrations), 
+                                    // checamos se precisamos inserir os livros iniciais
+                                    seedDatabase(instance);
                                 }
                             })
                             .build();
@@ -95,4 +59,46 @@ public abstract class AppDatabase extends RoomDatabase {
         return instance;
     }
 
+    private static void seedDatabase(AppDatabase db) {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            BookDao dao = db.bookDao();
+            // Só insere se o banco estiver vazio
+            if (dao.searchById(1) == null) { 
+                dao.insert(new Book(null, "Dom Casmurro", "Machado de Assis",
+                        "Um homem relembra sua juventude e desconfia que foi traído pela esposa. Gênero: Ficção, Clássico.",
+                        BookStatus.AVAILABLE,
+                        "https://www.gutenberg.org/ebooks/55752", R.drawable.dom_casmurro));
+                
+                dao.insert(new Book(null, "O Cortiço", "Aluísio Azevedo",
+                        "A vida dos moradores de um cortiço cheio de conflitos e pobreza. Gênero: Realismo, Ficção.",
+                        BookStatus.AVAILABLE,
+                        "https://www.gutenberg.org/ebooks/6913", R.drawable.o_cortico));
+                
+                dao.insert(new Book(null, "Frankenstein", "Mary Shelley",
+                        "Um cientista cria uma criatura que acaba se tornando um perigo. Gênero: Ficção Científica, Horror.",
+                        BookStatus.AVAILABLE,
+                        "https://www.gutenberg.org/ebooks/84", R.drawable.frankenstein));
+                
+                dao.insert(new Book(null, "Dracula", "Bram Stocker",
+                        "Um vampiro tenta espalhar o terror por várias pessoas na Idade Média. Gênero: Horror, Romance Gótico.",
+                        BookStatus.AVAILABLE,
+                        "https://www.gutenberg.org/ebooks/345", R.drawable.dracula));
+                
+                dao.insert(new Book(null, "Alice no País das Maravilhas", "Lewis Caroll",
+                        "Uma garota cai em um mundo estranho cheio de criaturas malucas. Gênero: Fantasia, Ficção.",
+                        BookStatus.AVAILABLE,
+                        "https://www.gutenberg.org/ebooks/11", R.drawable.alice));
+                
+                dao.insert(new Book(null, "Sherlock Holmes", "Arthur Conan Doyle",
+                        "Um detetive precisa resolver um mistério usando inteligência e observação. Gênero: Mistério, Ficção.",
+                        BookStatus.AVAILABLE,
+                        "https://www.gutenberg.org/ebooks/1661", R.drawable.sherlock));
+                
+                dao.insert(new Book(null, "Moby Dick", "Herman Melville",
+                        "Um capitão obcecado caça uma enorme baleia branca. Gênero: Aventura, Ficção.",
+                        BookStatus.AVAILABLE,
+                        "https://www.gutenberg.org/ebooks/2701", R.drawable.moby_dick));
+            }
+        });
+    }
 }

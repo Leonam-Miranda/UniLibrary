@@ -106,7 +106,7 @@ public class LoanService {
 
             // Incrementar livros lidos do usuário
             User user = userDao.searchById(loan.getUserId());
-            user.readBooks += 1;
+            user.markBookAsRead(loan.getBookId());
             userDao.update(user);
 
             mainThread.post(() -> onSucesso.accept(loan));

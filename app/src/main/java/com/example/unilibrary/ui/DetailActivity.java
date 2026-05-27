@@ -111,8 +111,10 @@ public class DetailActivity extends AppCompatActivity {
         if (btnReadOnline != null) {
             btnReadOnline.setOnClickListener(v -> {
                 if (book.getEpubUrl() != null && !book.getEpubUrl().isEmpty()) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.getEpubUrl()));
-                    startActivity(browserIntent);
+                    Intent readerIntent = new Intent(this, ReaderActivity.class);
+                    readerIntent.putExtra("book_url", book.getEpubUrl());
+                    readerIntent.putExtra("book_title", book.getTitle());
+                    startActivity(readerIntent);
                     incrementReadBooksCount();
                 } else {
                     Toast.makeText(this, "Link de leitura não disponível para este livro", Toast.LENGTH_SHORT).show();
@@ -150,8 +152,12 @@ public class DetailActivity extends AppCompatActivity {
     private void incrementReadBooksCount() {
         if (currentUser != null) {
             new Thread(() -> {
-                currentUser.readBooks++;
-                userDao.update(currentUser);
+                User freshUser = userDao.searchById(currentUser.getId());
+                if (freshUser != null && !freshUser.isBookRead(book.getId())) {
+                    freshUser.markBookAsRead(book.getId());
+                    userDao.update(freshUser);
+                    currentUser = freshUser;
+                }
             }).start();
         }
     }
