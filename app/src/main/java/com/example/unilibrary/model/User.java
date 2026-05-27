@@ -22,7 +22,8 @@ public class User {
 
     public int readBooks = 0;
     public int savedBooksCount = 0;
-    private String savedBookIds = ""; // Armazena IDs como "1,2,5,"
+    public String savedBookIds = ""; // Armazena IDs como [1][2][5]
+    public String readBookIds = ""; // Armazena IDs como [1][2][5]
 
     public User(){}
 
@@ -56,24 +57,39 @@ public class User {
     public int getSavedBooksCount() { return savedBooksCount; }
     public void setSavedBooksCount(int savedBooksCount) { this.savedBooksCount = savedBooksCount; }
 
-    public String getSavedBookIds() { return savedBookIds == null ? "" : savedBookIds; }
-    public void setSavedBookIds(String savedBookIds) { this.savedBookIds = savedBookIds; }
     public int getAvatarResId() { return avatarResId; }
     public void setAvatarResId(int avatarResId) { this.avatarResId = avatarResId; }
 
     // Helper para verificar se um livro está salvo
     public boolean isBookSaved(int bookId) {
-        return getSavedBookIds().contains(bookId + ",");
+        String ids = savedBookIds == null ? "" : savedBookIds;
+        return ids.contains("[" + bookId + "]");
+    }
+
+    // Helper para verificar se um livro já foi lido
+    public boolean isBookRead(int bookId) {
+        String ids = readBookIds == null ? "" : readBookIds;
+        return ids.contains("[" + bookId + "]");
+    }
+
+    // Helper para marcar livro como lido
+    public void markBookAsRead(int bookId) {
+        if (!isBookRead(bookId)) {
+            if (readBookIds == null) readBookIds = "";
+            readBookIds += "[" + bookId + "]";
+            readBooks++;
+        }
     }
 
     // Helper para adicionar/remover livro
     public void toggleSaveBook(int bookId) {
-        String idStr = bookId + ",";
+        String idStr = "[" + bookId + "]";
+        if (savedBookIds == null) savedBookIds = "";
         if (isBookSaved(bookId)) {
-            setSavedBookIds(getSavedBookIds().replace(idStr, ""));
+            savedBookIds = savedBookIds.replace(idStr, "");
             savedBooksCount--;
         } else {
-            setSavedBookIds(getSavedBookIds() + idStr);
+            savedBookIds += idStr;
             savedBooksCount++;
         }
     }
