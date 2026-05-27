@@ -67,7 +67,7 @@
                     android:layout_marginStart="16dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="@id/profileImageCard"
-                    app:layout_constraintEnd_toStartOf="@id/settingsIcon"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/profileImageCard"
                     app:layout_constraintTop_toTopOf="@id/profileImageCard">
 
@@ -88,15 +88,6 @@
                         android:textColor="@color/text_secondary"
                         android:textSize="14sp" />
                 </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/settingsIcon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_manage"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/text_secondary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Stats -->
@@ -106,7 +97,7 @@
                 android:layout_marginTop="32dp"
                 android:paddingHorizontal="24dp"
                 android:orientation="horizontal"
-                android:weightSum="3">
+                android:weightSum="2">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -131,17 +122,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="-" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="NÍVEL" android:textColor="@color/text_secondary" android:textSize="10sp" android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
+                    <TextView android:id="@+id/tvSavedBooksCount" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0" android:textColor="@color/primary_red" android:textSize="24sp" android:textStyle="bold" />
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SALVOS" android:textColor="@color/text_secondary" android:textSize="10sp" android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
@@ -156,7 +137,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <!-- Setting Items... (kept static for now) -->
+            <!-- Setting Items -->
              <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

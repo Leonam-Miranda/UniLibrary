@@ -71,6 +71,7 @@ public class SearchBookAdapter extends RecyclerView.Adapter<SearchBookAdapter.Se
         public void bind(Book book, OnBookClickListener listener) {
             tvTitle.setText(book.getTitle());
             tvAuthor.setText(book.getAuthor());
+            ivBookCover.setImageResource(book.getCoverResId());
             
             if (book.getStatus() == BookStatus.AVAILABLE) {
                 tvStatus.setText("Disponível");

@@ -1,5 +1,7 @@
 package com.example.unilibrary.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.unilibrary.R;
 import com.example.unilibrary.enums.BookStatus;
 import com.example.unilibrary.model.Book;
+import com.example.unilibrary.model.User;
 import com.example.unilibrary.db.AppDatabase;
 import com.example.unilibrary.db.dao.BookDao;
+import com.example.unilibrary.db.dao.UserDao;
 import com.example.unilibrary.service.LoanService;
 import com.example.unilibrary.service.Session;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -25,6 +29,7 @@ import java.util.Locale;
 public class DetailActivity extends AppCompatActivity {
 
     private BookDao bookDao;
+    private UserDao userDao;
     private LoanService loanService;
     private Book book;
 
@@ -34,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         bookDao = AppDatabase.getInstance(this).bookDao();
+        userDao = AppDatabase.getInstance(this).userDao();
         loanService = new LoanService(this);
 
         ImageView btnBack = findViewById(R.id.btnBack);
@@ -68,6 +74,7 @@ public class DetailActivity extends AppCompatActivity {
         ImageView ivStatusIcon = findViewById(R.id.ivStatusIcon);
         ImageView ivBookCover = findViewById(R.id.ivBookCover);
         MaterialButton btnReserve = findViewById(R.id.btnReserve);
+        MaterialButton btnReadOnline = findViewById(R.id.btnReadOnline);
 
         tvTitle.setText(book.getTitle());
         tvAuthor.setText("por " + book.getAuthor());
@@ -88,6 +95,35 @@ public class DetailActivity extends AppCompatActivity {
             btnReserve.setEnabled(false);
             btnReserve.setAlpha(0.5f);
             btnReserve.setText("Livro já emprestado");
+        }
+
+        // Configuração do botão Ler Online
+        if (btnReadOnline != null) {
+            btnReadOnline.setOnClickListener(v -> {
+                if (book.getEpubUrl() != null && !book.getEpubUrl().isEmpty()) {
+                    // 1. Redirecionar para o link
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(book.getEpubUrl()));
+                    startActivity(browserIntent);
+
+                    // 2. Incrementar contador de livros lidos no perfil
+                    incrementReadBooksCount();
+                } else {
+                    Toast.makeText(this, "Link de leitura não disponível para este livro", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void incrementReadBooksCount() {
+        int userId = Session.getUserId(this);
+        if (userId != -1) {
+            new Thread(() -> {
+                User user = userDao.searchById(userId);
+                if (user != null) {
+                    user.readBooks++;
+                    userDao.update(user);
+                }
+            }).start();
         }
     }
 
