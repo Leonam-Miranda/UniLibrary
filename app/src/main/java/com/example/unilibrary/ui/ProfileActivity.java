@@ -57,10 +57,12 @@ public class ProfileActivity extends AppCompatActivity {
         TextView tvName = findViewById(R.id.profileName);
         TextView tvEmail = findViewById(R.id.profileEmail);
         TextView tvBooksRead = findViewById(R.id.tvBooksReadCount);
+        TextView tvSavedBooks = findViewById(R.id.tvSavedBooksCount);
 
         if (tvName != null) tvName.setText(user.getName());
         if (tvEmail != null) tvEmail.setText(user.getEmail());
         if (tvBooksRead != null) tvBooksRead.setText(String.valueOf(user.readBooks));
+        if (tvSavedBooks != null) tvSavedBooks.setText(String.valueOf(user.getSavedBooksCount())); // ← novo
     }
 
     private void setupNavigation() {
