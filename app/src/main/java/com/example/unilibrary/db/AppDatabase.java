@@ -22,7 +22,7 @@ import java.util.concurrent.Executors;
 
 @Database(
         entities = {User.class, Book.class, Loan.class},
-        version = 12
+        version = 14
 )
 @TypeConverters(Converters.class)
 public abstract class AppDatabase extends RoomDatabase {
@@ -65,39 +65,54 @@ public abstract class AppDatabase extends RoomDatabase {
             // Só insere se o banco estiver vazio
             if (dao.searchById(1) == null) { 
                 dao.insert(new Book(null, "Dom Casmurro", "Machado de Assis",
-                        "Um homem relembra sua juventude e desconfia que foi traído pela esposa. Gênero: Ficção, Clássico.",
+                        "Bentinho relembra sua juventude, seu romance com Capitu e os acontecimentos que marcaram sua vida." +
+                                " Ao longo da história, ele passa a desconfiar que foi traído," +
+                                " criando uma narrativa cheia de dúvidas, ciúmes e interpretações. Gênero: Ficção, Clássico.",
                         BookStatus.AVAILABLE,
-                        "https://www.gutenberg.org/ebooks/55752", R.drawable.dom_casmurro));
+                        "https://www.gutenberg.org/cache/epub/55752/pg55752-images.html", R.drawable.dom_casmurro));
                 
                 dao.insert(new Book(null, "O Cortiço", "Aluísio Azevedo",
-                        "A vida dos moradores de um cortiço cheio de conflitos e pobreza. Gênero: Realismo, Ficção.",
+                        "A obra mostra o cotidiano dos moradores de um cortiço no Rio de Janeiro," +
+                                " retratando pobreza, ambição, conflitos e desigualdade social." +
+                                " O livro acompanha diferentes personagens e como o ambiente influencia suas vidas. Gênero: Realismo, Ficção.",
                         BookStatus.AVAILABLE,
-                        "https://www.gutenberg.org/ebooks/6913", R.drawable.o_cortico));
+                        "https://www.gutenberg.org/cache/epub/6913/pg6913-images.html", R.drawable.o_cortico));
                 
                 dao.insert(new Book(null, "Frankenstein", "Mary Shelley",
-                        "Um cientista cria uma criatura que acaba se tornando um perigo. Gênero: Ficção Científica, Horror.",
+                        "Victor Frankenstein é um cientista que decide criar vida através de um experimento." +
+                                " Porém, ao perceber o resultado de sua criação, ele a abandona, dando início a uma história marcada por solidão," +
+                                " vingança e consequências perigosas. Gênero: Ficção Científica, Horror.",
                         BookStatus.AVAILABLE,
-                        "https://www.gutenberg.org/ebooks/84", R.drawable.frankenstein));
+                        "https://www.gutenberg.org/cache/epub/84/pg84-images.html", R.drawable.frankenstein));
                 
                 dao.insert(new Book(null, "Dracula", "Bram Stocker",
-                        "Um vampiro tenta espalhar o terror por várias pessoas na Idade Média. Gênero: Horror, Romance Gótico.",
+                        "O conde Drácula deixa seu castelo na Transilvânia para espalhar o terror em outros lugares." +
+                                " Enquanto várias pessoas tentam sobreviver aos ataques do vampiro," +
+                                " elas também procuram descobrir uma maneira de derrotá-lo. Gênero: Horror, Romance Gótico.",
                         BookStatus.AVAILABLE,
-                        "https://www.gutenberg.org/ebooks/345", R.drawable.dracula));
+                        "https://www.gutenberg.org/cache/epub/345/pg345-images.html", R.drawable.dracula));
                 
                 dao.insert(new Book(null, "Alice no País das Maravilhas", "Lewis Caroll",
-                        "Uma garota cai em um mundo estranho cheio de criaturas malucas. Gênero: Fantasia, Ficção.",
+                        "Alice cai em um mundo fantástico cheio de criaturas estranhas," +
+                                " lugares curiosos e situações absurdas. Durante sua jornada, " +
+                                "ela encontra personagens marcantes enquanto " +
+                                "tenta entender aquele universo completamente diferente da realidade. Gênero: Fantasia, Ficção.",
                         BookStatus.AVAILABLE,
-                        "https://www.gutenberg.org/ebooks/11", R.drawable.alice));
+                        "https://www.gutenberg.org/cache/epub/11/pg11-images.html", R.drawable.alice));
                 
                 dao.insert(new Book(null, "Sherlock Holmes", "Arthur Conan Doyle",
-                        "Um detetive precisa resolver um mistério usando inteligência e observação. Gênero: Mistério, Ficção.",
+                        "A coletânea acompanha Sherlock Holmes e Dr. Watson na resolução de diversos casos misteriosos." +
+                                " Utilizando lógica, observação e inteligência," +
+                                " Holmes desvenda crimes e enigmas que parecem impossíveis para a polícia. Gênero: Mistério, Ficção.",
                         BookStatus.AVAILABLE,
-                        "https://www.gutenberg.org/ebooks/1661", R.drawable.sherlock));
+                        "https://www.gutenberg.org/cache/epub/1661/pg1661-images.html", R.drawable.sherlock));
                 
                 dao.insert(new Book(null, "Moby Dick", "Herman Melville",
-                        "Um capitão obcecado caça uma enorme baleia branca. Gênero: Aventura, Ficção.",
+                        "A história acompanha o capitão Ahab em sua obsessiva caçada à baleia branca Moby Dick." +
+                                " Durante a viagem marítima, a tripulação enfrenta perigos no oceano enquanto Ahab" +
+                                " se torna cada vez mais consumido pela vingança. Gênero: Aventura, Ficção.",
                         BookStatus.AVAILABLE,
-                        "https://www.gutenberg.org/ebooks/2701", R.drawable.moby_dick));
+                        "https://www.gutenberg.org/cache/epub/2701/pg2701-images.html", R.drawable.moby_dick));
             }
         });
     }

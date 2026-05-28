@@ -72,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                 auth.register(name, email, password,
                         erro -> Toast.makeText(this, erro, Toast.LENGTH_SHORT).show(),
                         user -> {
+                            user.setCourse(courseAutoComplete.getText().toString()); // salva o curso
                             user.setAvatarResId(selectedAvatarResId); // ← novo
                             new Thread(() ->                           // ← novo
                                     AppDatabase.getInstance(this).userDao().update(user)
