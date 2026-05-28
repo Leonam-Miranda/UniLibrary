@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +34,7 @@
         <activity android:name=".ui.ReaderActivity" android:exported="false" />
         <activity android:name=".ui.RenewLoanActivity" android:exported="false" />
         <activity android:name=".ui.ForgotPasswordActivity" android:exported="false" />
+        <activity android:name=".ui.MainActivity" android:exported="false" />
 
     </application>
 
