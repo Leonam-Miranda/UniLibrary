@@ -19,11 +19,13 @@ public class User {
     private String passwordHash;
 
     private int avatarResId;
+    private String course;
 
     public int readBooks = 0;
     public int savedBooksCount = 0;
     public String savedBookIds = ""; // Armazena IDs como [1][2][5]
     public String readBookIds = ""; // Armazena IDs como [1][2][5]
+
 
     public User(){}
 
@@ -59,6 +61,11 @@ public class User {
 
     public int getAvatarResId() { return avatarResId; }
     public void setAvatarResId(int avatarResId) { this.avatarResId = avatarResId; }
+
+    public String getCourse() { return course; }
+    public void setCourse(String course) { this.course = course; }
+    public String getSavedBookIds() { return savedBookIds == null ? "" : savedBookIds; }
+    public void setSavedBookIds(String savedBookIds) { this.savedBookIds = savedBookIds; }
 
     // Helper para verificar se um livro está salvo
     public boolean isBookSaved(int bookId) {

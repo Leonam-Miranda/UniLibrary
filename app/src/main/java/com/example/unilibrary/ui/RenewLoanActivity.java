@@ -43,7 +43,7 @@ public class RenewLoanActivity extends AppCompatActivity {
     }
 
     private void setupUI() {
-        findViewById(R.id.btnBack).setOnClickListener(v -> onBackPressed());
+
         findViewById(R.id.btnCancel).setOnClickListener(v -> finish());
 
         findViewById(R.id.btnConfirmRenewal).setOnClickListener(v -> {
